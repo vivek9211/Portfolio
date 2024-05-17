@@ -8472,6 +8472,7 @@ h1, h2, h3, h4, h5,
             text-align: center; } }
         .owl-carousel.home-slider .slider-item .slider-text .one-third {
           width: 60%;
+          height: 630px;
           position: relative;
           z-index: -1; }
           .owl-carousel.home-slider .slider-item .slider-text .one-third .overlay {
@@ -8514,7 +8515,8 @@ h1, h2, h3, h4, h5,
               right: 0;
               bottom: 0;
               z-index: 1;
-              padding: 1em; } }
+              padding: 1em;
+              height: 30rem; } }
           .owl-carousel.home-slider .slider-item .slider-text .one-forth .text {
             width: 100%; }
             @media (min-width: 992px) {

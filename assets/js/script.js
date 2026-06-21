@@ -119,6 +119,11 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formStatus = document.querySelector("[data-form-status]");
+
+// IMPORTANT: Replace YOUR_FORM_ID below with your Formspree form ID.
+// Sign up free at https://formspree.io, create a form, and paste the ID here.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdarngbg";
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
@@ -133,6 +138,45 @@ for (let i = 0; i < formInputs.length; i++) {
 
   });
 }
+
+// handle form submission via Formspree
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  formBtn.setAttribute("disabled", "");
+  formBtn.querySelector("span").textContent = "Sending…";
+  formStatus.className = "form-status";
+  formStatus.textContent = "";
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    });
+
+    if (response.ok) {
+      formStatus.className = "form-status success";
+      formStatus.textContent = "Message sent! I'll get back to you soon.";
+      form.reset();
+      formBtn.setAttribute("disabled", "");
+    } else {
+      const data = await response.json();
+      const errMsg = (data && data.errors)
+        ? data.errors.map(err => err.message).join(", ")
+        : "Something went wrong. Please try again.";
+      formStatus.className = "form-status error";
+      formStatus.textContent = errMsg;
+      formBtn.removeAttribute("disabled");
+    }
+  } catch (_) {
+    formStatus.className = "form-status error";
+    formStatus.textContent = "Network error. Please check your connection and try again.";
+    formBtn.removeAttribute("disabled");
+  }
+
+  formBtn.querySelector("span").textContent = "Send Message";
+});
 
 
 

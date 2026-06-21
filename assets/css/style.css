@@ -146,6 +146,29 @@ input, textarea {
   font: inherit;
 }
 
+.form-status {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: none;
+}
+
+.form-status.success {
+  display: block;
+  color: hsl(120, 60%, 70%);
+  background: hsla(120, 60%, 70%, 0.1);
+  border: 1px solid hsla(120, 60%, 70%, 0.3);
+}
+
+.form-status.error {
+  display: block;
+  color: hsl(0, 60%, 70%);
+  background: hsla(0, 60%, 70%, 0.1);
+  border: 1px solid hsla(0, 60%, 70%, 0.3);
+}
+
 ::selection {
   background: var(--orange-yellow-crayola);
   color: var(--smoky-black);
@@ -156,6 +179,245 @@ input, textarea {
 html { font-family: var(--ff-poppins); }
 
 body { background: var(--smoky-black); }
+
+/* Download Resume Button */
+.download-resume-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 12px 20px;
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+  border-radius: 12px;
+  font-weight: var(--fw-600);
+  font-size: var(--fs-6);
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+  box-shadow: var(--shadow-1);
+  text-decoration: none;
+}
+
+.download-resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.download-resume-btn ion-icon {
+  font-size: 18px;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: var(--fw-600);
+  font-size: var(--fs-6);
+  transition: all var(--transition-1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cta-btn.primary {
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: var(--orange-yellow-crayola);
+  border: 2px solid var(--orange-yellow-crayola);
+}
+
+.cta-btn.secondary:hover {
+  background: hsla(45, 100%, 71%, 0.1);
+  transform: translateY(-2px);
+}
+
+.cta-btn ion-icon {
+  font-size: 18px;
+}
+
+/* Stats Widget */
+.stats-widget {
+  margin: 30px 0;
+  padding: 20px;
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 16px;
+}
+
+.stats-title {
+  margin-bottom: 16px;
+  color: var(--orange-yellow-crayola);
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 16px;
+  background: var(--eerie-black-1);
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  text-align: center;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+.stat-label {
+  font-size: var(--fs-7);
+  color: var(--light-gray);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: var(--fw-600);
+  color: var(--orange-yellow-crayola);
+  margin: 8px 0;
+}
+
+.stat-subtext {
+  font-size: var(--fs-7);
+  color: var(--vegas-gold);
+}
+
+.stat-link {
+  color: var(--orange-yellow-crayola);
+  text-decoration: none;
+  font-weight: var(--fw-600);
+  transition: color var(--transition-1);
+}
+
+.stat-link:hover {
+  color: var(--vegas-gold);
+}
+
+/* Certificates Section */
+.certificates {
+  margin: 30px 0;
+}
+
+.certificates-title {
+  position: relative;
+  padding-bottom: 7px;
+  margin-bottom: 20px;
+}
+
+.certificates-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: var(--text-gradient-yellow);
+  border-radius: 3px;
+}
+
+.certificates-list {
+  list-style: none;
+  padding: 0;
+}
+
+.certificate-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.certificate-item:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-1);
+}
+
+.cert-badge {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cert-icon-badge {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--border-gradient-onyx);
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  color: var(--orange-yellow-crayola);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.cert-content {
+  flex: 1;
+}
+
+.cert-title {
+  margin: 0 0 4px;
+  font-size: var(--fs-5);
+  color: var(--white-2);
+}
+
+.cert-meta {
+  margin: 0;
+  font-size: var(--fs-7);
+  color: var(--light-gray);
+}
+
+/* Tech Stack Badges */
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: hsla(45, 100%, 71%, 0.15);
+  color: var(--orange-yellow-crayola);
+  border: 1px solid hsla(45, 100%, 71%, 0.3);
+  border-radius: 6px;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
 
 

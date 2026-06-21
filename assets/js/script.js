@@ -17,7 +17,10 @@ sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); }
 
 
 // testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
+const testimonialsSection = document.querySelector("[data-testimonials-section]");
+const testimonialsItem = testimonialsSection
+  ? testimonialsSection.querySelectorAll("[data-testimonials-item]")
+  : [];
 const modalContainer = document.querySelector("[data-modal-container]");
 const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
@@ -26,6 +29,7 @@ const overlay = document.querySelector("[data-overlay]");
 const modalImg = document.querySelector("[data-modal-img]");
 const modalTitle = document.querySelector("[data-modal-title]");
 const modalText = document.querySelector("[data-modal-text]");
+const modalTime = document.querySelector(".testimonials-modal time");
 
 // modal toggle function
 const testimonialsModalFunc = function () {
@@ -37,6 +41,9 @@ const testimonialsModalFunc = function () {
 for (let i = 0; i < testimonialsItem.length; i++) {
 
   testimonialsItem[i].addEventListener("click", function () {
+    if (!modalContainer || !overlay || !modalImg || !modalTitle || !modalText) {
+      return;
+    }
 
     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
@@ -50,8 +57,41 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 }
 
 // add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
+if (modalCloseBtn && overlay) {
+  modalCloseBtn.addEventListener("click", testimonialsModalFunc);
+  overlay.addEventListener("click", testimonialsModalFunc);
+}
+
+// service card modal support
+const serviceItems = document.querySelectorAll(".service-item");
+
+for (let i = 0; i < serviceItems.length; i++) {
+  serviceItems[i].addEventListener("click", function () {
+    if (!modalContainer || !overlay || !modalImg || !modalTitle || !modalText) {
+      return;
+    }
+
+    const serviceIcon = this.querySelector(".service-icon-box img");
+    const serviceTitle = this.querySelector(".service-item-title");
+    const serviceText = this.querySelector(".service-item-text");
+
+    if (!serviceIcon || !serviceTitle || !serviceText) {
+      return;
+    }
+
+    modalImg.src = serviceIcon.src;
+    modalImg.alt = serviceIcon.alt;
+    modalTitle.innerHTML = serviceTitle.innerHTML;
+    modalText.innerHTML = `<p>${serviceText.textContent.trim()}</p>`;
+
+    if (modalTime) {
+      modalTime.textContent = "Service Overview";
+      modalTime.setAttribute("datetime", "2026-06-21");
+    }
+
+    testimonialsModalFunc();
+  });
+}
 
 
 
